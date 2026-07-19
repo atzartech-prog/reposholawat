@@ -13,46 +13,48 @@ let appState = {
 };
 
 // DOM Elements
-const elements = {
-  themeToggle: document.getElementById("theme-toggle"),
-  searchInput: document.getElementById("search-input"),
-  clearSearch: document.getElementById("clear-search"),
-  categoryTabs: document.getElementById("category-tabs"),
-  sholawatList: document.getElementById("sholawat-list"),
-  listTitle: document.getElementById("list-title"),
-  itemsCount: document.getElementById("items-count"),
-  
-  // Detail Panel
-  detailPanel: document.getElementById("detail-panel"),
-  detailEmpty: document.getElementById("detail-empty-state"),
-  detailContent: document.getElementById("detail-content"),
-  btnBack: document.getElementById("back-to-list"),
-  favToggleBtn: document.getElementById("fav-toggle-btn"),
-  detailCategory: document.getElementById("detail-category"),
-  detailTitle: document.getElementById("detail-title"),
-  detailSourceLink: document.getElementById("detail-source-link"),
-  
-  // Reading Control
-  btnSizes: document.querySelectorAll(".btn-size"),
-  toggleTranslit: document.getElementById("toggle-translit"),
-  toggleTranslation: document.getElementById("toggle-translation"),
-  
-  // Tabs & Views
-  detailTabs: document.querySelectorAll(".detail-tab-btn"),
-  tabPanels: document.querySelectorAll(".tab-panel"),
-  lyricsContainer: document.getElementById("lyrics-container"),
-  detailHistoryText: document.getElementById("detail-history-text"),
-  
-  // Action Buttons
-  copyAllBtn: document.getElementById("copy-all-btn"),
-  searchYoutubeBtn: document.getElementById("search-youtube-btn"),
-  
-  // Parent layout wrapper
-  listSection: document.querySelector(".list-section")
-};
+let elements = {};
 
 // Initialize Application
 function init() {
+  elements = {
+    themeToggle: document.getElementById("theme-toggle"),
+    searchInput: document.getElementById("search-input"),
+    clearSearch: document.getElementById("clear-search"),
+    categoryTabs: document.getElementById("category-tabs"),
+    sholawatList: document.getElementById("sholawat-list"),
+    listTitle: document.getElementById("list-title"),
+    itemsCount: document.getElementById("items-count"),
+    
+    // Detail Panel
+    detailPanel: document.getElementById("detail-panel"),
+    detailEmpty: document.getElementById("detail-empty-state"),
+    detailContent: document.getElementById("detail-content"),
+    btnBack: document.getElementById("back-to-list"),
+    favToggleBtn: document.getElementById("fav-toggle-btn"),
+    detailCategory: document.getElementById("detail-category"),
+    detailTitle: document.getElementById("detail-title"),
+    detailSourceLink: document.getElementById("detail-source-link"),
+    
+    // Reading Control
+    btnSizes: document.querySelectorAll(".btn-size"),
+    toggleTranslit: document.getElementById("toggle-translit"),
+    toggleTranslation: document.getElementById("toggle-translation"),
+    
+    // Tabs & Views
+    detailTabs: document.querySelectorAll(".detail-tab-btn"),
+    tabPanels: document.querySelectorAll(".tab-panel"),
+    lyricsContainer: document.getElementById("lyrics-container"),
+    detailHistoryText: document.getElementById("detail-history-text"),
+    
+    // Action Buttons
+    copyAllBtn: document.getElementById("copy-all-btn"),
+    searchYoutubeBtn: document.getElementById("search-youtube-btn"),
+    
+    // Parent layout wrapper
+    listSection: document.querySelector(".list-section")
+  };
+
   loadFavorites();
   loadThemePreference();
   setupEventListeners();
@@ -351,7 +353,9 @@ function selectSholawat(id) {
   elements.detailContent.classList.remove("hidden");
   
   // Reset tab to Lyrics view
-  elements.detailTabs[0].click();
+    if (elements.detailTabs && elements.detailTabs[0]) {
+    elements.detailTabs[0].click();
+  }
   
   handleResponsiveView();
 }
