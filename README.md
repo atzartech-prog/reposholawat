@@ -25,10 +25,12 @@ Aplikasi ini dibangun menggunakan **HTML, Vanilla CSS (CSS Variables untuk Light
 
 ```
 reposholawat/
-├── index.html   # Struktur utama aplikasi web
-├── style.css    # Desain, animasi, tata letak, dan tema (Light & Dark)
-├── app.js       # Data lirik sholawat dan logika interaktif aplikasi
-└── README.md    # Panduan repositori ini
+├── index.html         # Struktur utama aplikasi web
+├── style.css          # Desain, animasi, tata letak, dan tema (Light & Dark)
+├── app.js             # Logika interaktif aplikasi web
+├── sholawat_db.json   # Basis data utama lirik sholawat (384 judul lengkap)
+├── crawl_all.py       # Script python scraper untuk memperbarui database secara otomatis
+└── README.md          # Panduan repositori ini
 ```
 
 ---
