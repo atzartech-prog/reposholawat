@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qosidah & Sholawat | Thobiby Qolby Repository</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Header/Hero Section -->
+    <header class="app-header">
+        <div class="glass-container header-content">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-mosque"></i>
+                </div>
+                <div>
+                    <h1>Thobiby Qolby</h1>
+                    <p class="subtitle">Repository Qosidah & Sholawat Nabi</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Search and Filter Bar -->
+        <section class="control-section glass-container">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Cari sholawat atau qosidah...">
+                <button id="clear-search" class="btn-clear hidden"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs-container">
+                <div class="category-tabs" id="category-tabs">
+                    <button class="tab-btn active" data-category="all">Semua</button>
+                    <button class="tab-btn" data-category="populer">Populer</button>
+                    <button class="tab-btn" data-category="sholawat">Sholawat</button>
+                    <button class="tab-btn" data-category="qosidah">Qosidah</button>
+                    <button class="tab-btn" data-category="maulid">Maulid</button>
+                    <button class="tab-btn" data-category="favorites"><i class="fa-solid fa-star text-gold"></i> Favorit</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <div class="content-layout">
+            <!-- Left Side: List of Sholawat -->
+            <section class="list-section">
+                <div class="section-header">
+                    <h2 id="list-title">Semua Daftar Teks</h2>
+                    <span id="items-count" class="badge">0 Teks</span>
+                </div>
+                <div class="sholawat-grid" id="sholawat-list">
+                    <!-- Cards will be dynamically injected here via JS -->
+                </div>
+            </section>
+
+            <!-- Right Side / Modal View: Details View of Selected Sholawat -->
+            <section class="detail-section glass-container" id="detail-panel">
+                <div id="detail-empty-state" class="empty-state">
+                    <i class="fa-solid fa-book-open empty-icon"></i>
+                    <h3>Pilih Teks Qosidah</h3>
+                    <p>Silakan klik salah satu sholawat di daftar sebelah kiri untuk menampilkan teks lengkap, transliterasi, terjemahan, dan sejarahnya.</p>
+                </div>
+
+                <div id="detail-content" class="detail-content hidden">
+                    <!-- Top Actions inside detail panel -->
+                    <div class="detail-header-actions">
+                        <button id="back-to-list" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+                        <button id="fav-toggle-btn" class="btn-icon-fav"><i class="fa-regular fa-star"></i></button>
+                    </div>
+
+                    <div class="detail-meta">
+                        <span id="detail-category" class="category-badge">QOSIDAH</span>
+                        <h2 id="detail-title">Nama Qosidah</h2>
+                        <p class="source-ref">Sumber: <a id="detail-source-link" href="#" target="_blank" rel="noopener">pecintahabibana.wordpress.com <i class="fa-solid fa-up-right-from-square"></i></a></p>
+                    </div>
+
+                    <!-- Layout Controls (Font size, Toggles) -->
+                    <div class="reading-controls">
+                        <div class="control-group">
+                            <label><i class="fa-solid fa-text-height"></i> Ukuran Huruf Arab</label>
+                            <div class="font-size-buttons">
+                                <button class="btn-size" data-size="small">A-</button>
+                                <button class="btn-size active" data-size="medium">A</button>
+                                <button class="btn-size" data-size="large">A+</button>
+                                <button class="btn-size" data-size="xlarge">A++</button>
+                            </div>
+                        </div>
+                        <div class="control-group toggle-switches">
+                            <label class="switch-container">
+                                <input type="checkbox" id="toggle-translit" checked>
+                                <span class="slider"></span>
+                                Transliterasi (Latin)
+                            </label>
+                            <label class="switch-container">
+                                <input type="checkbox" id="toggle-translation" checked>
+                                <span class="slider"></span>
+                                Terjemahan
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tab Buttons for Lyrics vs History -->
+                    <div class="detail-tabs">
+                        <button class="detail-tab-btn active" data-target="lyrics-view"><i class="fa-solid fa-lines-leaning"></i> Teks Lirik</button>
+                        <button class="detail-tab-btn" data-target="history-view"><i class="fa-solid fa-circle-info"></i> Latar Belakang / Fadilah</button>
+                    </div>
+
+                    <!-- Lyrics View -->
+                    <div id="lyrics-view" class="tab-panel active">
+                        <div class="lyrics-container" id="lyrics-container">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- History View -->
+                    <div id="history-view" class="tab-panel">
+                        <div class="history-content">
+                            <p id="detail-history-text">Sejarah atau fadhilah sholawat...</p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Action Buttons -->
+                    <div class="detail-footer">
+                        <button id="copy-all-btn" class="btn btn-secondary"><i class="fa-solid fa-copy"></i> Salin Semua Teks</button>
+                        <a id="search-youtube-btn" href="#" target="_blank" class="btn btn-primary"><i class="fa-brands fa-youtube"></i> Cari di YouTube</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>&copy; 2026 Thobiby Qolby Repository. Dibuat untuk memudahkan umat mempelajari & mengamalkan Qosidah.</p>
+        <p>Lirik & Teks bersumber dari <a href="https://pecintahabibana.wordpress.com/teks-qosidah/" target="_blank" rel="noopener">Pecinta Habibana (Thobiby Qolby) <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
